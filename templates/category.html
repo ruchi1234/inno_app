@@ -1,0 +1,45 @@
+<ion-view>	<!-- Hearder Bar Start -->
+	<div class="bar bar-header categery_header_pan">
+		<ion-nav-bar>
+			<ion-nav-buttons side="left">
+				<button style="color: #fff;z-index:1000" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+			</ion-nav-buttons>
+			<ion-nav-title>
+				{{shopName}}
+			</ion-nav-title>
+			<ion-nav-buttons side="right">
+				<button class="button button-icon button-clear ion-ios-search" style="color: #fff;" ng-click="go_search()">
+				</button>
+			</ion-nav-buttons>		</ion-nav-bar>	</div>	<div style="clear:both;"></div>	<!-- Hearder Bar End -->	<ion-content class="has-header has-subheader" style="top: 80px!important">		<div style="text-align: center;" ng-if="loadingdata==1">
+			<ion-spinner icon="spiral"></ion-spinner>
+		</div>
+		<div style="padding-top: 5px; padding-bottom: 25px;">
+			<div class="list" ng-model="formData.category">
+				<div style="border-bottom: 1px dotted #ddd;" ng-repeat="x in category track by $index"> <!-- x.cat_id">  -->
+					<a ng-href="#/app/subcategory/{{::x.cat_id }}"  >					<div style="border: 0px; display:table; width:100%;" class="my-item my-item-thumbnail-left">
+						<span style=" display:table-cell;width:80px; vertical-align:top;" ng-if="category_image==1" >							<div style="width: 80px;">
+								<img ng-src="{{::x.photo }}">
+							</div> </span>						<div style="display:table-cell; vertical-align:top; padding-left:5px;">							<div class="store_span" style="margin-top: 20px">
+								<h2 class="name_font">{{ ::x.cat_name }} </h2>
+							</div>						</div>
+						<div style="display:table-cell;width:20px; vertical-align:top; padding-right:5px;">
+							<span class="icon_span" ><i class="icon ion-chevron-right"></i></span>
+						</div>
+					</div> </a>
+				</div>
+				<!--
+				<div style="padding-top: 35px;  text-align: center;" ng-if="load_data">
+				<img src="img/loading_spinner.gif" />
+				</div>
+				-->
+			</div>
+			<div ng-if="!hasData && loadingdata!=1" style="text-align: center">				No data available in Category			</div>
+		</div>
+		<div style="text-align: center;" ng-if="!noMoreItemsAvailable && loadingdata!=1">
+			<ion-spinner icon="spiral"></ion-spinner>
+		</div> 
+		<ion-infinite-scroll immediate-check="false" icon="none"  ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="1%" ></ion-infinite-scroll>
+	</ion-content>
+	<div class="bar bar-footer bar-balanced" ng-include src="'templates/footer.html'">
+	</div>
+</ion-view>

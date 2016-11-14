@@ -1,0 +1,64 @@
+<ion-view>
+	<!-- Hearder Bar Start -->
+		<div class="bar bar-header login_header">
+			<div class="row">
+	    		<div class="col-2"><h2>Login</h2>Existing Member</div>
+	    		<div class="col-75">
+	    			<div class="signing_toggle">
+						<div style="text-align: center;"class="row">
+							<div class="col-50">
+								
+							</div>
+							<div class="col-50">
+								
+							</div>
+						</div>
+					</div>
+	    		</div>
+	    		<div class="col"></div>
+	    	</div>
+	    </div>
+		<div style="clear:both;"></div>
+ 	
+ 
+  	<ion-content class="has-header has-subheader-login">
+		<form name="form">			
+		
+			
+			<div style="margin-top: 100px;" class="row">
+				<div class="col"></div>
+					<div class="col-75">
+						<div class="input_bx">
+							<input type="text" name="phone" ng-pattern="/^[1-9]{1}[0-9]{9}$/" placeholder="Phone" ng-model="formdata.phone"  minlength="10" required  >
+				              <span style="color:red" ng-show="errormsg">{{errormsg}}rr</span> 
+				            </div>
+				                             
+					        <div ng-messages="form.phone.$error" ng-if="form.phone.$touched" role="alert">
+							    <div style="color:red" ng-message='required'></div>
+							    <div style="color:red" ng-message='minlength','maxlength'>Your number must be 10 digits long</div >
+						    </div>
+						<div class="input_bx">
+				<input type="password"name="password"ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"placeholder="password"ng-model="formdata.password"minlenth="6"required>
+				        </div>
+				          <span style="color:red" ng-show="errorpass">{{errorpass}}</span>       
+				       
+						<div style="color:red" > 
+							 <span style="color:red" ng-show="loginmsg">{{loginmsg}}</span>
+					 	</div >
+						   
+								<div class="mybtn">
+									<button class="button button-block button-assertive mybutton" value="submit" ng-click="adminLogin();">
+		  								Login
+									</button>
+								</div>
+							</div>
+							<div class="col"></div>
+						</div>
+				
+					</div>
+				<div class="col"></div>
+			</div>
+	</form>
+	</ion-content>
+</ion-view>
+	

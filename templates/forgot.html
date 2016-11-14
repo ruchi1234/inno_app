@@ -1,0 +1,83 @@
+<ion-view view-title="" class="grey_bg">
+
+<!-- Hearder Bar Start -->
+
+ 
+
+        <div style="height:40px !important" class="bar bar-header login_header">
+
+            
+
+        </div>
+
+ <!-- Hearder Bar End -->
+
+    <ion-content padding="10" class="has-header has-subheader">
+
+       <div class="col login_here" style=" "><u> Forgot Password!</u></div>
+
+        <div class="list" style="margin-top:45px">
+
+        <div class="col">{{msg}}</div>
+
+         <form name="myForm">   
+
+            <label class="item  item-input item-floating-label" ng-style="myObj">
+
+            <span class="input-label">Email</span>
+
+            <input type="email" name="email_id"  placeholder="Email" ng-model="formdata.email_id"  >
+
+            </label>
+
+           
+
+             <div class="row" style="margin-top:15px">
+
+          <div class="col col-50"><button ng-click="doForgetPass();" class="button button-block button-positive reset_pass">
+
+             Reset Password
+
+         </button></div>
+
+         
+
+          <div class="col col-50"> <a ng-href="#/app/beforelogin"><button class="button button-block button-positive reset_pass ">
+
+            Cancel
+
+          </button>
+
+         </a>
+
+         </div>
+
+         
+
+          </div>
+
+             
+
+         <a ng-href="#/app/login" class="button button-clear button-block button-positive">
+
+            Back to Login
+
+         </a>
+
+         </form>
+
+      </div>
+
+      
+
+  </ion-content>
+
+</ion-view>
+
+<style>
+
+     
+
+     
+
+</style>

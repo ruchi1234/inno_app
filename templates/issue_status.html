@@ -1,0 +1,54 @@
+<ion-view view-title="Contact us" class="grey_bg">
+  	<!-- Hearder Bar Start -->
+	<div class="bar bar-header categery_header_pan">
+        <ion-nav-bar>
+  		<button style="color: #fff;z-index:1000" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+  			<ion-nav-title>
+     		Support
+     		  
+    		</ion-nav-title>
+  					
+		</ion-nav-bar>
+    </div>
+	<div class="bar bar-subheader" >
+		<div style="text-align: center; margin-top: 100px" ng-if="loadingdata==1">	   	
+			<ion-spinner icon="android"></ion-spinner>
+		</div>
+       <ion-tabs class="tabs-assertive">
+            <ion-tab title="Issue" href="#/app/contact_us"></ion-tab>
+            <ion-tab title="Issue Status" href="#/app/issue_status"></ion-tab>
+        </ion-tabs>
+
+        </div>
+	<div style="clear:both;"></div>
+	
+  	<ion-content class="has-header has-subheader" padding="10" style="margin-top: 45px;" data-init="getMessage()">
+      
+       
+  
+      
+      
+      
+      <div class="list">
+      	<div ng-repeat="msg in msgDetail">
+      		
+      		
+      		<div class="content support_chat" ng-if="msg.from==1" 	ng-click="getComplainDetail(msg.id)" >
+		      <h4>{{msg.subject_name}}</h4>
+		      <p>{{msg.message}}</p>
+    	   </div>
+
+      	</div>
+      	   
+    	   
+    	    
+
+</div>
+    	   
+</div>
+ 
+        	
+      
+     
+  </ion-content>
+</ion-view>

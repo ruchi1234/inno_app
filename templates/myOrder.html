@@ -1,0 +1,99 @@
+<ion-view>
+    <!-- Hearder Bar Start -->
+    <div class="bar bar-header categery_header_pan">
+        <ion-nav-bar>
+  		<button style="color: #fff;z-index:1000" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+  			<ion-nav-title>
+     		 My Orders 
+     		  
+    		</ion-nav-title>
+  					
+		</ion-nav-bar>
+    </div>
+
+    <div class="bar bar-subheader" data-ng-init="getmyOrder()">
+       <ion-tabs class="tabs-assertive">
+            
+            <ion-tab title="Order Wise" href="#/app/orderWise"></ion-tab>
+            <ion-tab title="Product Wise" href="#/app/reorder"></ion-tab>
+        </ion-tabs>
+
+    </div>
+
+    <div style="clear:both;"></div>
+    
+    <!-- Hearder Bar End -->
+
+    <ion-content class="has-header-order has-subheader" style="margin-bottom:15px;bottom:30px!important">
+        <div style="text-align: center;margin-top: 50px;" ng-if="loadingdata==1">
+        	   <ion-spinner icon="spiral"></ion-spinner>
+	   </div>
+        <div  ng-repeat="x in items">
+        	<div style="border: 0px; display:table; width:100%;margin-top: 10px;  padding: 2px;border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(221, 221, 221);  " class="">
+        	    
+        	    <div style=display:table-cell;width:80px; vertical-align:top;"> 
+        	    	<a ng-href="#/app/product/{{x.id}}"  style="border: 0px;" class="item"> 
+        	    		<img  ng-src="{{x.image}}" /> </a>
+        	    </div>
+        	    <div style="display:table-cell; vertical-align:top; padding-left:20px;">
+        	    	<a  ng-href="#/app/product/{{x.id}}"  >
+        	          <h2 class="name_font" style="margin-bottom: 5px"> {{x.name}} <span ng-if="x.pkgquantity" style="font-size:12px">({{x.pkgquantity}})</span>
+        	          	
+        	          </h2> </a>
+        	            <div style="margin-bottom: 0;font-size: 17px;">
+									<div style=" min-width: 45px; display: inline-block;font-size: 17px; color: black">  Cycle: </div> 
+									<span style="font-size: 17px;"> {{x.totalItem}} </span>
+									 				   
+												</div>
+						<div style="margin-bottom: 4px;font-size: 17px;">
+									<div style=" min-width: 42px; display: inline-block;font-size: 17px; color: black;">Qty:  </div>	<span style="font-size: 17px;">{{x.sumQuantity}} </span>			  
+												</div>
+												
+						<div style="/* float: left; */" ng-repeat="sub in x.child" > 
+
+                             <div ng-if="$first && sub.color" class="list_text_name"  >
+                                Color: 
+                            </div>
+                            <div ng-if="sub.color" class="colorIcon" style="background: {{sub.color}};border: 1px solid black;"> </div>
+
+                        </div>
+                        <div style="clear: both;"></div>
+                        
+                        
+                        <div style="   margin-top: 2px;" ng-repeat="sub in x.child"> 
+
+                            <!-- <div style="float: left; color: #000; min-width: 40px;">size:</div> -->
+                            <div ng-if="$first && sub.size" class="list_text_name"  >
+                                Size: 
+                            </div>
+                            <div ng-if="sub.size" class="sizeIcon" style="border: 1px solid black; border-radius: 4px;" > 
+
+                                <div style="text-align: center;color:#000;margin-right: 2px;margin-left: 1px;"> {{sub.size}} </div></div>
+
+                            </div>
+
+                            <div style="clear: both;"></div>
+                            
+                             
+                            
+        	    </div>
+        	    <div style="display:table-cell; vertical-align:top; padding-right:10px;float: right">
+        	    	<div class="order-bottom" ng-click="reorder($index)">
+                                <button class="button button-small button-positive" >
+                                    Reorder
+                                </button>
+                            </div>
+        	    	</div>
+        	</div>
+            
+        </div>
+        <div style="height:5px"></div>
+        <div style="text-align: center;" ng-if="!noMoreproOrdersAvailable">
+            <ion-spinner icon="spiral"></ion-spinner>
+        </div>
+     <ion-infinite-scroll immediate-check="false" icon="none"  ng-if="!noMoreproOrdersAvailable" on-infinite="loadMoreProOrder()" distance="1%" ></ion-infinite-scroll>
+    </ion-content>
+  <div class="bar bar-footer bar-balanced" ng-include src="'templates/footer.html'">
+
+
+   </div>

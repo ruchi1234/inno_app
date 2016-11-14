@@ -1,0 +1,45 @@
+<ion-view>
+	<!-- Hearder Bar Start -->
+		<div class="bar bar-header select_store_header">
+			<span>Select Store</span>
+	 	</div>
+		<div style="clear:both;"></div>
+ 	<!-- Hearder Bar End -->
+ 
+  	<ion-content class="has-header-store has-subheader" ng-model="formData.selectStore" >	
+  	
+		<ion-list  ng-repeat="item in selectStore" >
+				<ion-radio ng-model="choice" ng-value="{{item.id}}" ng-change="serverSideChange(item);" >   
+					<img src="{{item.shop_logo}}" />
+					<span style="position: absolute; margin-left: 10px; margin-top: 20px;">{{item.shop_name}}</span>
+				</ion-radio>
+				<!--<ion-radio ng-model="choice" ng-value="'B'">
+					<img src="img/bucket.jpg" />
+					<span style="position: absolute; margin-left: 10px; margin-top: 20px;">Store Name </span>
+				</ion-radio>
+				<ion-radio ng-model="choice" ng-value="'C'">
+					<img src="img/bucket.jpg" />
+					<span style="position: absolute; margin-left: 10px; margin-top: 20px;">Store Name </span>
+				</ion-radio>
+				<ion-radio ng-model="choice" ng-value="'D'">
+					<img src="img/bucket.jpg" />
+					<span style="position: absolute; margin-left: 10px; margin-top: 20px;">Store Name </span>
+				</ion-radio> -->
+			</ion-list>
+			<div style="margin-top: 20px; margin-bottom: 20px;">
+				<div class="row">
+					<div style="text-align: center;" class="col-67">
+					<!--	<span style="color: orange; font-size: 20px; font-family: "Source Sans Pro"">Activation Code</span>--->
+						<div class="storeinput">
+							<input style="width: 100%;" placeholder="Activation Code" type="text"/>
+						</div>
+					</div>
+					<div style="text-align: center; margin-left: 10px;" class="col-33">
+						<a href="#"><div style="text-align: center;" class="my-btn-store">Insert</div></a>
+					</div>
+				</div>
+			</div>
+  	
+  	</ion-content>
+</ion-view>
+

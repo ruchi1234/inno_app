@@ -1,0 +1,107 @@
+<style>
+	 
+</style>
+<ion-view>
+	<!-- Hearder Bar Start -->
+	<div class="bar bar-header register_header">
+		<div class="row">
+			<div class=""></div>
+			<div class="col">
+				<div class="signing_toggle">
+					<div style="text-align: center;" class="row">
+						<div class="col-50">
+							<a href="#/app/login">
+							<div class="r2A_register">
+								Login
+							</div></a>
+						</div>
+						<div class="col-50">
+							<a href="#/app/signup" data-transition="flip:left">
+							<div class="r2B_register">
+								Register
+							</div></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class=""></div>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+	<div style="    position: absolute;  z-index: 10000; opacity: 5.5;  top: 60px;  width: 100%; height: 100%; " ng-if="cover==1"  >
+	   	<div style="   position: absolute;    top: 38%;margin: 0 auto;    left: 47.89%;  "><img src="img/loadingimg.gif" / style=" !important"></div>
+	   </div>
+ 
+	<!-- Hearder Bar End -->
+
+	<ion-content class="has-header has-subheader-login">
+	 
+		<form name="myForm">
+			<div style="margin-top: 82px;" class="row">
+				
+				<div class=""></div>
+				
+				<div class="col">
+					<div  class="login_here" ><u> Signup Here!</u></div>
+					<div class="list" style="width:100%">
+		<label class="item  item-input item-floating-label" ng-style="banmeerr">
+          <span class="input-label">Business Name</span>
+         <input type="text"  ng-model="myData.businessName" placeholder="Business Name" name="businessName" required pattern=".{2,}" >
+        </label>
+        <label class="item  item-input item-floating-label" ng-style="personerr">
+          <span class="input-label">Name</span>
+             <input type="text"  ng-model="myData.name" placeholder="Contact Person Name" name="name" required pattern=".{2,}"  >
+        </label>
+        <label class="item  item-input item-floating-label" ng-style="texterr">
+          <span class="input-label">Address </span>
+          <input type="text"  ng-model="myData.address" placeholder="Address" name="name" required    >
+          <!-- <textarea rows="3" name="address" placeholder="Address" ng-model="myData.address" required ></textarea> -->
+          </label>
+          
+          <label class="item  item-input item-floating-label" ng-style="emailerr">
+          <span class="input-label"> Email</span>
+           <input type="email" name="email" placeholder="Email" ng-model="myData.email" required>
+          </label>
+          
+          <label class="item  item-input item-floating-label" ng-style="pnumbererr">
+          <span class="input-label">Phone Number </span>
+           <input type="text" name="phone" placeholder="Phone Number" ng-model="myData.phone" ng-required="true"  ng-autocomplete="false">
+          </label>
+          
+          <label class="item  item-input item-floating-label" ng-style="passerr">
+          <span class="input-label"> Password</span>
+            <input type="password" name="password" placeholder="Password" ng-model="myData.password" required minlength="6" ng-autocomplete="false" >
+          </label>
+          
+          <label class="item  item-input item-floating-label" ng-style="panerr">
+          <span class="input-label"> Pan Number</span>
+            <input type="text" name="password" placeholder="Pan Number" ng-model="myData.pancode" required minlength="6" ng-autocomplete="false" >
+          </label>
+          
+          <label class="item  item-input item-floating-label" ng-style="tinerr">
+          <span class="input-label"> Tin Number</span>
+            <input type="text" name="password" placeholder="Tin Number" ng-model="myData.tin" required minlength="6" ng-autocomplete="false" >
+          </label>
+         
+        </div> 
+					<div ng-if="errormail"><span style="color:red;margin-bottom: 10px;margin-left: 15px;" ng-show="errormail">{{errormail}}</span> <br /></div>
+					<div ng-if="errorstore"><span style="color:red;margin-bottom: 10px;margin-left: 15px;" ng-show="errorstore">{{errorstore}}</span> <br /></div>
+					<div ng-if="errorvalidation"><span style="color:red;margin-bottom: 10px;margin-left: 15px;" ng-show="errorvalidation">{{errorvalidation}}</span> <br /></div>
+					<div class="row">
+						<div class=""></div>
+						<div class="col">
+							<div class="mybtn">
+								<button class="button button-block button-assertive mybutton" value="submit" ng-click="signup();">
+									Submit
+								</button>
+							</div>
+						</div>
+						<div class=""></div>
+					</div>
+				</div>
+				<div class=""></div>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>
+

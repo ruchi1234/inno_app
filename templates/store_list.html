@@ -1,0 +1,121 @@
+<ion-view>
+	<!-- Hearder Bar Start -->
+	<div class="bar bar-header store_list_header">
+		<div class="row">
+			<div  class="col header_col">
+				<div class="store_list_header_text" >
+				 <h2 class="name_font" style="color: #FFFFFF;">Store List</h2>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+	<div style="    position: absolute;  z-index: 10000; opacity: 5.5;  top: 60px;  width: 100%; height: 100%; " ng-if="cover==1"  >
+	   	<div style="   position: absolute;    top: 38%;margin: 0 auto;    left: 47.89%;  ">
+	   			<ion-spinner icon="spiral"></ion-spinner>
+	   	</div>
+	</div>
+	<!-- Hearder Bar End -->
+	<div style="    position: absolute;  z-index: 10000; opacity: 5.5;  top: 60px;  width: 100%; height: 100%; " ng-if="cover==1"  >
+		  <div style="   position: absolute;    top: 38%;margin: 0 auto;    left: 47.89%;  ">
+		  	<ion-spinner icon="spiral"></ion-spinner>
+		  </div>
+
+	</div>
+	
+	<ion-content class="has-header-store_list has-subheader" style="overflow-y: auto!important;bottom:10px">
+	<div style="text-align: center;;z-index:1000" ng-if="loadingdata==1">
+	   	<ion-spinner icon="android"></ion-spinner>
+	   </div>
+		<div class="row">
+			<div class=""></div>
+			<div class="col">
+				<div class="store_list_radio_div" >
+					<div ng-model="formData.selectStore" > 
+					<div class="list" ng-repeat="item in selectStore" style="border-bottom:0.1em dotted">
+						
+						<div class="my-list col">
+										<div style="border: 0px; display:table; width:100%;" class="my-item my-item-thumbnail-left" ng-click="serverSideChange(item.id);">  <!--  -->
+										    
+										   
+										    
+											<a style=" display:table-cell;width:80px; vertical-align:top;" ng-value="{{item.id}}"   > <!-- ng-click="serverSideChange(item.id);" -->
+											    <div style="width: 80px;">
+											         <img ng-src="{{item.shop_logo}}">
+											    </div>
+											
+											 </a>
+											<div style="display:table-cell; vertical-align:top; padding-left:5px;">
+											       <!-- <a  ng-value="{{item.id}}" >  ng-click="serverSideChange(item.id);" -->
+											       <div class="store_span">
+								                     <h2 class="name_font">{{item.shop_name}}</h2>
+							                         </div>
+											       <div class="my-product-discription2">
+													<span>{{item.address}}</span>
+													</div> 
+													<div class="my-product-discription2">
+													<span>{{item.phone_number}}</span>
+													</div> 
+													<div class="my-product-discription2">
+													<span>{{item.admin_email}}</span>
+													</div> 
+												<div style="padding-bottom: 10px; font-size: 10px">
+				                                <span style="color: black;"> {{item.isActivemsg}} </span>
+				                           			 </div>
+				                           			
+				                           			 
+											</div>
+											
+										</div>
+									</div>
+									
+									
+						 
+					</div>
+					</div>
+					 
+			
+					<div class="row">
+						<div class="col" style="width: 100%;">		
+							<div ng-click="ShowHide()" class="select_store_btn" style="text-align: center;float:right;margin-top: 5px;margin-right: 6px;">
+								Add new store
+							</div>
+  						</div>
+						<!--
+						<div  style="padding-top: 5px;width:100%;">
+							<a ng-click="ShowHide()">
+							<div style="text-align: center;float:right;" class="select_store_btn">
+								Add new store
+							</div> </a>
+						</div>
+						-->
+					</div>
+				 <div class="store_list_radio_list" ng-show = "IsVisible">
+					<div class="row">
+						<div class="col">
+							<span style="padding-left: 15px;">Wants to Add New Store?</span>
+							<label class="item item-input item-floating-label" style="margin-top: 30px;">
+							    <span class="input-label">Store Code</span>
+							    <input type="text" placeholder="Store Code" style="width: 100%;" name="store_list"  ng-model="formData.store_list">
+							</label>
+							<div style="padding-bottom: 35px; padding-left: 15px;">
+								<span style="color:red;width:100%" ng-show="errormail" >{{errormsg}}</span>							
+						    </div>
+						</div>
+					</div>
+					<div style="padding: 3px;">
+						<a ng-click= "getAuthenticate();">
+						<div style="text-align: center;" class="select_store_btn">
+							Submit
+						</div> </a>
+					</div>
+				</div>
+
+				</div>
+
+			
+			</div>
+			<div class=""></div>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,174 @@
+<ion-view>
+    <!-- Hearder Bar Start -->
+    <div class="bar bar-header order_header">
+        <ion-nav-bar>
+        <ion-nav-back-button class="button-clear" ng-click="setpreURL()">
+          <i class="ion-arrow-left-c"></i> Back </ion-nav-back-button>
+          <ion-nav-title>
+          {{shopName}}
+          </ion-nav-title>
+            
+        </ion-nav-bar>
+      
+    </div>
+    <div class="bar bar-subheader order_subheader" data-ng-init="getReorder()">
+    	
+        <div style="clear:both;"></div>
+        <div class="my-select-item" >
+        	<div class="row">
+        	<div style="width:50%"> 
+        		<div style="border-bottom: #f1f1f1 solid 1px;"><span style="font-size: 15px; vertical-align: middle;color:#fff">Selected Items : </span> <span style="    float: right; vertical-align: middle;color:#fff"> {{totalquantity}}</span></div>
+            
+            <div>
+            <span style="font-size: 15px; vertical-align: middle;color:#fff">
+               Total : 
+            </span>
+            
+            <span style="    float: right;font-size: 15px; vertical-align: middle;color:#fff">
+                {{currencyCode}}  {{total | setDecimal:2}}
+             </span>
+
+             </div>
+        		</div>
+        		
+        	<div style="width:50%">  
+        		<div ng-if="deliveryStatus !=2 && getVal != 2" class="orderSpan"><div ng-if="orderStatusName">Order status</div> <div>{{::orderStatusName}}</div> </div>
+                        <button  class="add-cart" style="margin-top: 7px;" ng-if="deliveryStatus ==2 && getVal != 2" ng-click="changestatus(orderId,1)" > Cancel </button>
+                        <button  class="add-cart" style="margin-top: 7px;" ng-if="deliveryStatus ==2 && getVal != 2" ng-click="changestatus(orderId,2)" > Confirm </button>
+             <div class="reorderAddPage" ng-if="getVal==2"   ng-click="addreordercart()">				Reorder
+               <!-- <img src="img/Reorder.png" / style="margin-top:8px"> -->
+             </div>
+        
+           	</div>
+           	</div>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div style="    position: absolute;  z-index: 10000; opacity: 5.5;  top: 60px;  width: 100%; height: 100%; background: rgba(0, 0, 0, 0.11);" ng-if="cover==1"  >
+	   	<div style="   position: absolute;    top: 38%;margin: 0 auto;    left: 47.89%;  "><img src="img/van.png" / style=" !important"></div>
+	   </div>
+    <!-- Hearder Bar End -->
+
+    <ion-content class="has-header-order has-subheader" style="margin-top: 30px;margin-bottom:15px;bottom: 0px!important;">
+    <div style="text-align: center;margin-top: 10px;" ng-if="loadingdata==1">
+
+	    <ion-spinner icon="spiral"></ion-spinner>
+
+	   </div>
+        <div ng-repeat="x in re_items" >
+    			<div style="border: 0px; display:table; width:100%;margin-top: 10px;  padding: 2px;border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(221, 221, 221);  " class="" id="{{x.id}}" >
+
+	                 <div style="display:table-cell;width:80px; vertical-align:top;">
+							<a ng-href="#/app/product/{{x.productParent_id}}" >
+                       				 <div class="cart-items">
+                           					 <img style="margin-top: 21px;" ng-src="{{::x.image}}" />
+                        			</div>
+                           </a>
+	                  </div>
+	 
+
+					<div style="display:table-cell; vertical-align:top; padding-left:30px;">
+                        
+                       	<a  ng-href="#/app/product/{{x.productParent_id}}" >
+                       		<h2 class="name_font" style="margin-bottom: 5px"> {{::x.name}} </h2>
+                            
+                        </a> 
+                        <div style="font-size: 12px; color: black;margin-bottom: 0" >
+									         <span ng-if="mrp !=0">  MRP: </span>
+                            	{{::currencyCode}}  {{x.pro_cost}}   
+												</div>
+						<span ng-if="x.pkgquantity !=1" style="font-size:12px">Pcs/Box {{::x.pkgquantity}} pcs</span>
+                        <div style="clear: both;"></div>
+                        <div style=" font-size: 12px" >
+                            <span ng-if="x.pkgquantity ==1">Quantity : </span>
+                            <span ng-if="x.pkgquantity > 1">Order(Boxes) : </span>
+                            <span ng-if="deliveryStatus ==2 && x.available_qunatity!=0" style="color: red">{{x.quantity}}
+                            </span>
+                             <span ng-if="x.available_qunatity==0">
+                              {{x.quantity}}
+                             </span> 
+                        </div>
+
+                        <div style=" font-size: 12px" ng-if="x.pkgquantity > 1">
+                             Total quantity (in pcs):                             
+                            
+                              {{x.quantity * x.pkgquantity }} 
+                            
+                        </div>
+                        <div ng-if="x.available_qunatity >0" style=" font-size: 12px;">
+                            Available Quantity :<span ng-if="x.available_qunatity" style="color: green">{{x.available_qunatity}}</span> 
+                        </div> 
+
+                        <div style="/* float: left; */" ng-repeat="sub in x.child" > 
+
+                             <div ng-if="$first && sub.color" class="list_text_name"  >
+                                Color: 
+                            </div>
+                            <div ng-if="sub.color" class="colorIcon" style="background: {{::sub.color}};border: 1px solid black;"> </div>
+
+                        </div>
+                        <div style="clear: both;"></div>
+
+                        <div style="   margin-top: 2px;" ng-repeat="sub in x.child"> 
+
+                            <!-- <div style="float: left; color: #000; min-width: 40px;">size:</div> -->
+                            <div ng-if="$first && sub.size" class="list_text_name"  >
+                                Size: 
+                            </div>
+                            <div ng-if="sub.size" class="sizeIcon" style="border: 1px solid black; border-radius: 4px;" > 
+
+                                <div style="text-align: center;color:#000;margin-right: 2px;margin-left: 1px;"> {{::sub.size}} </div></div>
+
+                            </div>
+
+                            <div style="clear: both;"></div>
+
+                        <!--
+                        <div style=" font-size: 12px;" ng-if="x.colorname">
+                            <div style="float: left">Color:</div>
+                            <div class="procoloRerIcon" style="background:{{x.colorname}}"></div>
+                        </div> 
+                        <div style="clear:both"> </div>
+                        <div style=" font-size: 12px;" ng-if="x.size">
+                            Size:  {{x.size}}
+                        </div> 
+                        -->
+                        <!--
+                        <span ng-if="getVal==2 && x.notify==1" style="font-size: 10px; color:black;">Total quantity (in Pcs):  {{x.pkgquantity * formData.itemQuantity[x.id]}}</span>
+                        -->
+                         <div style="color:red;padding-top: 2px;padding-bottom: 2px;" ng-if="getVal==2 && x.notify==2">
+                            Out of stock
+                        </div> 
+                        <!-- <button  class="add-cart" ng-if="getVal!=2 &&  x.deliveryStatus == 2 && x.available_qunatity >0" ng-click="changestatus(x.id,x.customerId,x.orderId,x.store_id,x.available_qunatity,x.quantity,1)" > Cancel </button>
+                        <button  class="add-cart" ng-if="getVal!=2 &&  x.deliveryStatus == 2 && x.available_qunatity >0" ng-click="changestatus(x.id,x.customerId,x.orderId,x.store_id,x.available_qunatity,x.quantity,2)" > Confirm </button> -->
+					</div>
+					<div style="display:table-cell; vertical-align:top; padding-right:10px;float: right" ng-if="getVal==2 && x.notify==1">
+							    
+                            <select   ng-model="formData.itemQuantity[x.id]" required="required" ng-init="formData.itemQuantity[x.id]= x.quantity"  ng-options="option as option for option in counters track by option">
+
+                            </select>
+                            <div class="my-delete-sign" style=""  ng-click="deleterecord($index);">
+                       				<i style="font-size: 35px;color: orange;" class="icon ion-ios-trash-outline"></i>
+                            </div> 
+                                             
+					</div>
+					<div style="display:table-cell; vertical-align:top; padding-right:10px;float: right" ng-if="getVal==2 && x.notify==2">
+							   <a ng-click="notify(x.id)">
+														<button  class="add-cart notifycss">Notify Me</button>
+														</a>
+					</div>
+					
+				
+				</div>
+				
+
+                
+
+        </div>
+        <!-- ---- If no item -->
+        <div class="row" ng-if="noData">
+                      <span style="margin-bottom: 20px; margin-top: 20px; text-align: center"  > No Item Selected</span>
+        </div>
+        
+    </ion-content>
+ </ion-view>

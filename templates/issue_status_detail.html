@@ -1,0 +1,80 @@
+<ion-view view-title="Contact us" class="grey_bg">
+  	<!-- Hearder Bar Start -->
+	<div class="bar bar-header subcategery_header_pan">
+		<div class="row header_row1">
+			<div class="col-5">
+				<div style=" text-align: left;">
+					<a href="#/app/issue_status" ng-click="setPreCat();" class="">
+					    <div class="back-arrow">
+					    <i style="color: #fff;" class="ion-android-arrow-back"></i>
+					    </div>
+					    </a>
+				</div>
+			</div>
+			<div style="" class="col-95 category_header scat_div">
+				<span class="shopsize" style="font-size:16px">Support </span> 
+				
+			</div>
+		</div>
+	</div>    
+	<div style="text-align: center; margin-top: 100px" ng-if="loadingdata==1">	   	<img ng-src="img/loading_spinner.gif" />	   </div>
+	<div style="background-color: grey; height: 35px !important; border-bottom: 0px !important;" class="bar subcategory-subheader" >
+       <div style="text-align:center;color:#fff;font-size: 13px;" class="subcategory">{{subjects}}</div>
+   </div>
+	<div style="clear:both;"></div>
+	
+  	<ion-content class="has-header has-subheader" padding="10" style="margin-top: 45px;" data-init="getMessage()">
+	      
+	      <div class="list" style="margin-bottom: 75px">
+	      	<div ng-repeat="msg in msgDetail">
+	      		<div class="content   chat-bubble right" ng-if="msg.from==1" ng-click="getComplainDetail(msg.subject_id)" >
+			     
+			      <p>{{msg.message}}</p>
+			       <span>{{user_name}}</span>
+	    	   </div>
+	    	   <div class="content   chat-bubble left" ng-if="msg.from==2" >
+			      
+			      <p>{{msg.message}}</p>
+			      <span>{{admin_name}}</span>
+	    	   </div>
+	      	</div>
+	      	<div style="margin-bottom: 10px;"></div>
+		  </div>
+		  
+		 
+  </ion-content>
+  
+  <div class="bar bar-footer bar-stable comment-stable-main">
+  	   <div style="border: 0px; display:table;background-color:#fff; width:100%;" >
+  	   	  <div style=" display:table-cell; vertical-align:top;">
+  	   	  <label class="item item-input item-stacked-label">
+    		     <input style="height: 35px !important;" type="text" placeholder="Message" ng-model="formData.message">
+		       </label>
+		       </div>
+  	  
+  	   <div style=" display:table-cell;width:80px; vertical-align:top; float: right ; margin-top: 5px"> 
+  	   	  <button class="button button-positive" ng-click="post()">
+			  	  Submit
+			  </button>
+  	   	</div>
+  	    </div>
+		<!-- <div >
+			<div style="float: left;margin-left: 10px;width: 267px">
+				
+				<label class="item item-input item-stacked-label">
+    		     <input type="text" placeholder="Message" ng-model="formData.message">
+		       </label>
+				
+			  
+			  <!-- <div style="color: red; padding-top: 5px; padding-bottom: 5px;">
+			  	  <span ngshow="errproduct">{{errmessage}}</span>
+			  </div>
+			 </div>
+			 <div style="float:right;margin-top: 7px;"> 
+			  <button class="button button-positive" ng-click="post()">
+			  	  Submit
+			  </button>
+			 </div> 	
+		</div>  -->
+	</div>
+</ion-view>

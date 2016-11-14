@@ -1,0 +1,57 @@
+<ion-side-menus enable-menu-with-back-views="true" ng-controller="MainCtrl">
+  <ion-side-menu-content drag-content="false">
+ 	<ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+	<ion-content>
+		<div style="margin-bottom: 0px !important;" class="list">
+			<a class="item item-icon-left item-icon-right" ng-repeat="item in items" href="{{item.url}}">
+			  <i class="icon {{item.icon}}"></i>
+				  {{item.title}}
+		      <i class="icon ion-arrow-right-c"></i>
+	        </a>
+      	</div>
+
+	    <ion-list>	  
+			<ion-item menu-close-keep-history class="side_barColor" href="#/app/my_address" class="item-icon-left" ng-if="user_id">
+				<i class="icon ion-person"></i>
+					My Account
+				</ion-item>
+				<ion-item menu-close-keep-history class="side_barColor"   href="#/app/category" class="item-icon-left">
+					<i class="icon ion-ios-list-outline"></i>
+						Category
+				</ion-item>
+				<ion-item menu-close-keep-history class="side_barColor" href="#/app/wish_list" class="item-icon-left" ng-if="user_id">
+	                <i class="icon ion-android-favorite-outline"></i>
+	                My Favourite  
+	            </ion-item>
+				<ion-item menu-close-keep-history class="side_barColor" href="#/app/order" class="item-icon-left" ng-if="ordering == 1 && user_id">
+					<i class="icon ion-ios-cart"></i>
+						My Basket
+				</ion-item>
+				<ion-item menu-close-keep-history class="side_barColor" href="#/app/orderWise" class="item-icon-left" ng-if="ordering == 1 && user_id">
+					<i class="icon ion-clipboard"></i>
+					Order/Reorder
+				</ion-item>
+				<ion-item menu-close-keep-history class="side_barColor" href="#/app/changepass" class="item-icon-left" ng-if="user_id">
+					<i class="icon ion-key"></i>
+					Change Password
+				</ion-item>
+				 <ion-item menu-close-keep-history class="side_barColor" href="#/app/contact_us" class="item-icon-left" ng-if="user_id">
+					<i class="icon ion-help-circled"></i>
+					Support
+				</ion-item> 
+				<ion-item menu-close-keep-history class="side_barColor" href="#/app/logout" class="item-icon-left" ng-if="user_id">
+					<i class="icon ion-log-out"></i>
+						Logout
+				</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-side-menu>
+
+
+
+</ion-side-menus>
+
+
+

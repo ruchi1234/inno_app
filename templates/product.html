@@ -1,0 +1,200 @@
+<ion-view ng-init="getProductDetail();">
+    <!-- Hearder Bar Start -->
+    <div class="bar bar-header subcategery_header_pan">
+       
+        <ion-nav-bar>
+            <ion-nav-back-button class="button-clear" ng-click="setpreURL()">
+            <i class="ion-arrow-left-c"></i> Back 
+            </ion-nav-back-button>
+            <ion-nav-title>
+             {{::shopName}}
+            </ion-nav-title>
+                    
+        </ion-nav-bar>
+        <!--
+        <div class="row header_row1">
+             
+             <div class="col-5">
+                <div style=" text-align: left;">
+                    <a href="#{{backurl}}" >
+                        <div class="back-arrow">
+                        <i style="color: #fff;" class="ion-android-arrow-back"></i>
+                        </div>
+                        </a>
+                </div>
+            </div> 
+            <div style="text-align: center" class="col-90 overFlowdiv">
+				<span class="shopsize" >{{shopName}} </span> 
+			</div>
+            <!--
+            <div style="text-align: right;" class="col">
+                <a href="#/app/order"> <span><i style="font-size: 25px; margin-right: 12px; color: #fff;" class="ion-ios-cart" ></i></span>
+                <div style="margin-right: -8px; margin-top: -34px;" ng-click="showConfirm()">
+                    <span class="badge badge-assertive counter-box" ng-model="itemInCart">{{itemInCart}}</span>
+                </div> </a>
+            </div>
+           
+        </div>
+        -->
+    </div>
+    <div style="clear:both;"></div>
+    <!-- Hearder Bar End -->
+
+    <ion-content class="has-header-product has-subheader">
+        <!--
+        <div style="text-align: center;" ng-if="loadingdata==1">
+        <img ng-src="img/loading_spinner.gif" / style="width:100px !important">
+        </div>
+        -->
+        <div style="margin-bottom: 100px;">
+
+            <div class="col" style="text-align:center">
+                <h2 class="pro_name">{{::name}}</h2>
+                
+            </div>
+
+            <div  class="col product_img product_bigImg">
+                
+                <slider images="images" />
+            </div>
+           <div  class="row" ng-if="box_size > 1">
+                <div class="col ">
+                    <div style=" text-align: center; box-shadow: none;" class="list font_color"><!-- border-top: 1px solid #ccc; -->
+                        <!--<span ng-if="pck_quantity==1"> Single Piece </span> -->
+                        <span > Box of {{::box_size}}. </span>
+
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;z-index:1000" ng-if="!name">
+                <ion-spinner icon="spiral"></ion-spinner>
+            </div>
+            
+            <div class="row" style="margin-bottom: 5px;" >
+                <div style="width: 50%;text-align: right;  margin-right: 5px;">
+                    <!--
+                    <select name "{{item.id}}" ng-model="formData.myProductCounter" style="border-radius: 5px;   width: 52px;" ng-if="notify!=1 && color_variation !=1" >
+                        <option ng-repeat="sub in counter" value="{{sub.id}}"  ng-selected="{{sub.id == 1 }}">{{ sub.id }} </option>
+                    </select>
+                    -->
+                    <select name= "{{item.id}}" ng-if="(notify!=1 && color_variation !=1) && ordering == 1"  style="border-radius: 5px;" class="select_box" ng-model="formData.myProductCounter" required="required" ng-init="formData.myProductCounter= 1"  ng-options="option as option for option in counters track by option" >
+                    </select>
+
+                </div>
+                <div style="width: 50%" ng-if="notify==2">
+                    <div ng-click="addcart(currentProductId,discounted_value,images[0]['image'],name,box_size,colordata)" ng-if="color_variation==2  && ordering == 1" class="add-cart" style="float:left!important">Add to cart</div>
+                    
+                    <!-- ng-click="customizeproduct()" -->
+                    <a ng-href="#/app/customize/{{currentProductId}}"  ng-if="color_variation==1 && ordering == 1">
+                              <button  class="add-cart" style="float:left!important;padding: 2px;padding-left: 5px;padding-right: 5px;height:24px!important">Customize</button>
+                    </a>
+                    
+                </div>
+                
+                
+                <div style="width: 50%" ng-if="notify==1  && ordering == 1">
+                    <div class="add-cart notifycss" style="    text-align: center;float:left!important;padding: 3px;padding-left: 5px;padding-right: 5px;height:24px!important;padding-left: 5px;padding-right: 5px;" ng-click="notify1(currentProductId)" ng-if="color_variation==2  && ordering == 1">
+                        Notify Me
+                    </div>
+                    <a ng-click="notify1(currentProductId)" ng-if="color_variation==1">
+                              <button  class="add-cart" style="float:left!important;padding: 2px;padding-left: 5px;padding-right: 5px;height:24px!important;background-color: #B9B0B0 !important;" >Notify Me</button>
+                    </a>
+                                       
+                </div>
+                
+                <div>
+                   <a ng-click="addTofavourite(status,currentProductId)" title="Like"><i style="color: orange;margin-right:15px;font-size: 25px;" class="{{classname}}"></i></a><!-- icon ion-ios-heart -->
+                </div>
+
+            </div>
+            <div ng-if="(notify!=1 && color_variation !=1) && ordering == 1" style="text-align: center" class="col">
+            	<span ng-if="box_size > 1"style="font-size: 12px; ">Total quantity (in pcs):  {{box_size * formData.myProductCounter }}
+													     </span>
+            </div>
+
+            <div class="row" ng-if="discounted_value">
+
+                <div class="col product_detail" >
+                    <span class="left_containt font_color">Price</span>
+
+                    <span class="right_containt" style=" font-weight: 600;" >  {{::currencyCode}}  {{::discounted_value}}</span>
+                    <span style="#000; margin-left: 10px;" ng-if="percentage_discount"><strike style="float: right; margin-right: 10px;">{{::currencyCode}} {{::price}}</strike></span>
+                    <span ng-if="mrp!=0" class="right_containt">MRP:  </span>
+                </div> 
+
+            </div>
+
+            <div style="text-align: center;" class="row" ng-if="percentage_discount">
+                <div class="col product_detail">
+
+                    <span class="left_containt font_color">Discount </span><span class="right_containt">{{::percentage_discount}}  % Off</span>
+
+                </div>
+            </div>
+
+            <div class="row " ng-if="showcolor==1">
+                <div class="col product_detail">
+
+                    <span class="left_containt font_color" style="float: left;"> Color </span>
+                    <div style="float:right;display: -webkit-inline-box;">
+                        <!--
+                        <select ng-model="formData.colordata" ng-change="changeProduct();" ng-if="pck_quantity==1 && color_variation==1">
+                            <option ng-repeat="x in colordata" value="{{x.color}}" ng-selected="{{x.color == currentProductId }}">{{x.colorname}} </option>
+                        </select>
+                        -->
+                        <div class="divpad"  ng-repeat="sub in colordata" > <!--ng-if="color_variation==2" -->
+                            <div ng-if="sub.color_id" class="procolorIcon" style="background: {{::sub.color}};"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style=" " class="row " ng-if="showsize==1">
+                <div class="col product_detail">
+                    <span class="left_containt font_color"> Size </span>
+                    <div style="float:right;display: -webkit-inline-box;">
+                       <!--
+                        <select ng-model="formData.colordata" style="border: 0px;" ng-change="changeProduct();" ng-if="pck_quantity==1 && color_variation==1">
+                            <option ng-repeat="x in colordata" value="{{x.color}}" ng-selected="{{x.color == currentProductId }}">{{x.size}} </option>
+                        </select>
+                       -->
+                        <div ng-repeat="sub in colordata" >
+
+                            <div ng-if="sub.size" class="sizeIcon" >
+                                <div style="text-align: center;color:#000">
+                                    {{::sub.size}}
+                                </div>
+                            </div>
+
+                        </div> </div>
+                </div>
+            </div>
+            <div style="text-align: center;" class="row" ng-if="brand">
+                <div class="col product_detail">
+
+                    <span class="left_containt font_color">Brand </span><span class="right_containt">{{::brand}}</span>
+
+                </div>
+            </div>
+            <div style="text-align: center;" class="row">
+                <div class="col product_detail">
+
+                    <span class="left_containt font_color">Item Number </span><span class="right_containt">{{::sku}}</span>
+
+                </div>
+            </div>
+            
+            <div style= "" class="row ">
+                <div class="col" style="color:#B6B6B4;margin-left:10px;margin-right: 10px"  ng-bind-html="description | nl2br" >
+                       
+                    
+                </div>
+            </div>
+        </div>
+    </ion-content>
+ 
+    <div class="bar bar-footer bar-balanced" ng-include src="'templates/footer.html'">
+		
+	</div>
+
+</ion-view>

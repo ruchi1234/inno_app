@@ -1,0 +1,73 @@
+<style>
+	input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], input[type=email], input[type=url], input[type=tel], input[type=color], textarea {
+		height: 19px !important;
+	}
+	.input-label {
+		color: orange;
+	}
+</style>
+<ion-view>
+	<!-- Hearder Bar Start -->
+	<div class="bar bar-header categery_header_pan">
+        <ion-nav-bar>
+  		<button style="color: #fff;z-index:1000" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+  			<ion-nav-title>
+     		Change Password
+     		  
+    		</ion-nav-title>
+  					
+		</ion-nav-bar>
+    </div>
+		  
+		<div style="clear:both;"></div>
+ 	 <div style="    position: absolute;  z-index: 10000; opacity: 5.5;  top: 60px;  width: 100%; height: 100%; background: rgba(0, 0, 0, 0.11);" ng-if="cover==1"  >
+	   	<div style="   position: absolute;    top: 38%;margin: 0 auto;    left: 47.89%;  "><img src="img/loadingimg.gif" / style=" !important"></div>
+	   </div>
+ 
+  	<ion-content class="has-header has-subheader-login">
+		<form name="myForm">			
+		  
+				<div class="col-5"></div>
+					<div class="col">
+						 
+			<div style="margin-top: 82px;" class="row">
+		<div class="list" style="width:100%">
+			 
+		<label class="item   item-input item-floating-label" ng-style="currentStyle" >
+          <span class="input-label">Current Password</span>
+         <input type="password"  name="new_password" placeholder="Current Password" ng-model="formData.cupass"    required>
+        </label>
+        
+        <label class="item   item-input item-floating-label" ng-style="passStyle" >
+          <span class="input-label">New Password</span>
+         <input type="password"  name="new_password" placeholder="New Password" ng-model="formData.newpassword"    required>
+        </label>
+        
+         <label class="item   item-input item-floating-label" ng-style="cnfpassStyle" >
+          <span class="input-label">Confirm Password</span>
+         <input type="password"  name="cnf_password" placeholder="Confirm Password" ng-model="formData.cnfpassword"    required>
+        </label>
+        
+       <label  >
+       	<span class="input" style="color:#ef473a;margin-left: 15px;" ng-show="errorpass">{{errorpass}}</span>
+         <div class="mybtn">
+									<button class="button button-block button-assertive mybutton" value="submit" ng-click="changePaasword();">
+		  								Submit
+									</button>
+         </label>
+       
+       </div>
+						 
+					 
+							</div>
+							<div class="col-5"></div>
+							
+						</div>
+			 
+					</div>
+				<div class="col"></div>
+			</div>
+	</form>
+	</ion-content>
+</ion-view>
+	

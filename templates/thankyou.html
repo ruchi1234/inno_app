@@ -1,0 +1,172 @@
+<ion-view>
+
+	<!-- Hearder Bar Start -->
+
+	<div class="bar bar-header categery_header_pan">
+
+		<div class="row header_row">
+
+			<!--
+
+			<div class="col-20">
+
+				<div style="margin:5px">
+
+					<a href="#/app/category" ng-click="setPreCat();">
+
+					    <div class="back-arrow">
+
+					    <i style="font-size: 20px;color: #fff;" class="ion-android-arrow-back"></i>
+
+					    </div>
+
+					    </a>
+
+				</div>
+
+			</div>
+
+			-->
+
+			<div class="col-5 category_header">
+
+                <button style="color: #fff;" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+
+            </div>
+
+			<div style="text-align: right;" class="col-80">
+
+				<!-- <div class="searching_box">
+
+					<input type="text" placeholder="Search"  ng-click="searchPage()"  />
+
+				</div> -->
+
+				<div style="color: #fff; font-size: 25px;"> 
+
+					<!-- <i class="icon ion-ios-search " ng-click="searchPage()" ></i> -->
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	 
+
+	<div style="clear:both;"></div>
+
+	<!-- Hearder Bar End -->
+
+
+
+	<ion-content class="has-header has-subheader">
+
+	   
+
+	   <div style="padding-top: 35px;  text-align: center;" ng-if="loadingdata==1">
+
+	   	<img src="img/loading_spinner.gif" />
+
+	   </div>
+
+					
+
+		<div style="padding-top: 35px; padding-bottom: 25px;text-align: center;font-size: 17px;">
+
+			Your order has been Placed. Thank you!
+
+		</div>
+
+	</ion-content>
+
+
+
+	<div class="bar bar-footer bar-balanced">
+
+		<div style="text-align: center; padding-top: 10px;" class="row">
+
+			<div class="col">
+
+				<a href="#/app/category"> <i style="color: #fff !important;" class="my-icon ion-ios-list-outline"></i> </a>
+
+			</div>
+
+			
+
+			<div class="col">
+
+				<a href="#/app/order" > <i style="color: #fff !important;" class="my-icon my-icon ion-ios-cart"></i> <!-- ng-click="orderRedirection();" -->
+
+				<div style="position: relative; left: 15px; bottom: 33px;">
+
+					<span class="badge badge-assertive counter-box" ng-model="itemInCart">{{itemInCart}}</span>
+
+				</div>
+
+				</a>
+
+			</div>
+
+			
+
+			<div class="col">
+
+				<!--  ng-click="wishDirection();"--> 
+
+				<a href="#/app/wish_list"><i style="font-size: 20px; color: #fff !important;" class="my-icon ion-android-favorite-outline"></i> 
+
+				<div style="position: relative; left: 15px; bottom: 33px;">
+
+					<span class="badge badge-assertive counter-box" ng-model="wishList">{{wishList}}</span>
+
+				</div>
+
+				</a>
+
+			</div>
+
+			
+
+			<div class="col">
+
+				<a href="#/app/orderWise"> <i style="color: #fff !important;" class="my-icon  ion-clipboard"></i> </a>
+
+			</div>
+
+			
+
+			
+
+			<div class="col">
+
+				<a href="#/app/store_list"> <i style="color: #fff !important;" class="my-icon ion-share"></i> </a>
+
+			</div>
+<div class="col">
+
+				<a href="#/app/latestproduct"> <i style="color: #fff !important;" class="my-icon ion-android-notifications"></i>
+					<div style="position: relative; left: 15px; bottom: 33px;">
+
+					<span class="badge badge-assertive counter-box" ng-model="wishList">{{latestproduct}}</span>
+
+				</div>
+				 </a>
+
+			</div>
+			
+
+			<!-- <div class="col">
+
+				<a href="#/app/contact_us"> <i style="color: #fff !important;" class="my-icon ion-help-circled"></i> </a>
+
+			</div> -->
+
+		</div>
+
+	</div>
+
+</ion-view>
+

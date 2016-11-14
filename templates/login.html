@@ -1,0 +1,159 @@
+<style>
+
+	.side_barColor{
+
+		margin-right: 2px;
+
+	}
+
+</style>
+
+<ion-view>
+
+	<!-- Hearder Bar Start -->
+
+		<div class="bar bar-header login_header">
+
+			<div class="row">
+
+	    		<div class=""></div>
+
+	    		<div class="col">
+
+	    			<div class="signing_toggle">
+
+						<div style="text-align: center;" class="row">
+
+							<div class="col-50">
+
+								<a href="#/app/login"><div class="r2A_login">Login</div></a>
+
+							</div>
+
+							<div class="col-50">
+
+								<a href="#/app/signup"><div class="r2B_login">Register</div></a>
+
+							</div>
+
+						</div>
+
+					</div>
+
+	    		</div>
+
+	    		<div class=""></div>
+
+	    	</div>
+
+	    </div>
+
+		<div style="clear:both;"></div>
+
+ 	 <div style="    position: absolute;  z-index: 10000; opacity: 5.5;  top: 60px;  width: 100%; height: 100%; " ng-if="cover==1"  >
+		  <div style="   position: absolute;    top: 38%;margin: 0 auto;    left: 47.89%;  ">
+		  	<img src="img/loadingimg.gif" / style=" !important">
+		  </div>
+
+	</div>
+
+ 
+
+  	<ion-content class="has-header has-subheader-login">
+
+		<form name="myForm">			
+
+		  
+
+				<div class=""></div>
+
+					<div class="col">
+
+						 
+
+			<div style="margin-top: 82px;" class="row">
+
+		<div class="list" style="width:100%">
+
+			<div class="col login_here" style=" "><u> Login Here!</u></div>
+
+		<label class="item  item-input item-floating-label" ng-style="myObj">
+
+          <span class="input-label">Phone Number</span>
+          <!--ng-pattern="/^[1-9]{1}[0-9]{9}$/"-->
+          <input type="text" name="phone"  placeholder="Phone Number" ng-model="formData.phone"  minlength="10" required  >
+
+        </label>
+
+        
+
+        <label class="item   item-input item-floating-label" ng-style="passStyle" >
+
+          <span class="input-label">Password</span>
+
+         <input type="password"  name="password" placeholder="Password" ng-model="formData.password"    required>
+
+        </label>
+
+        
+
+       <label  >
+
+       	<span class="input" style="color:#ef473a;margin-left: 15px;" ng-show="errorpass">{{errorpass}}</span>
+
+         <div class="mybtn">
+
+									<button class="button button-block button-assertive mybutton" value="submit" ng-click="doLogin();">
+
+		  								Login
+
+									</button>
+
+         </label>
+
+       
+
+       </div>
+
+						 
+
+						 
+
+							</div>
+
+							<div class=""></div>
+
+							
+
+						</div>
+
+				        <a ng-href="#/app/forgot" class="button button-clear button-block button-positive">
+
+                            Forgot Password?
+
+                        </a>
+
+                    <div style="padding:2px;">
+
+					 <div style="text-align: center;font-weight:bold">Any Problem using this app?</div>
+					 <div style="text-align: center">Please contact our innorade customer care. Monday - Friday 10AM - 6PM </div>
+
+					
+
+					<div style="text-align: center"><i class="icon ion-ios-telephone-outline side_barColor"></i>  0120-4164569 &nbsp;&nbsp;&nbsp; <i class="icon ion-ios-email-outline side_barColor"></i> info@innorade.com</div>
+
+					</div>
+
+					
+
+				<div class="col"></div>
+
+			</div>
+
+	</form>
+
+	</ion-content>
+
+</ion-view>
+
+	

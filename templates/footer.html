@@ -1,0 +1,35 @@
+<div style="text-align: center; padding-top: 10px;" class="row">
+	
+	<div class="col" ng-click="go_category()">
+		<i style="color: #fff !important;" class="my-icon ion-ios-list-outline"></i>
+	</div>
+	
+	<div class="col" ng-if="ordering ==1" ng-click="go_order()">
+		<i style="color: #fff !important;" class="my-icon my-icon ion-ios-cart"></i>
+		<div style="position: relative; left: 15px; bottom: 33px;">
+
+			<span class="badge badge-assertive counter-box" ng-model="itemInCart">{{itemInCart}}</span>
+
+		</div>
+	</div>
+	
+	<div class="col" ng-click="go_wish_list()" ng-if="user_id">
+		<i style="font-size: 20px; color: #fff !important;" class="my-icon ion-android-favorite-outline"></i>
+		<div style="position: relative; left: 15px; bottom: 33px;">
+			<span class="badge badge-assertive counter-box" ng-model="wishList">{{wishList}}</span>
+		</div>
+	</div>
+	
+	<div class="col" ng-if="ordering ==1 && user_id" ng-click="go_orderWise()" >
+		<i style="color: #fff !important;" class="my-icon  ion-clipboard"></i>
+	</div>
+
+
+	<div class="col" ng-click="go_latestproduct()" ng-if="user_id">
+		<i style="color: #fff !important;" class="my-icon ion-android-notifications"> </i>
+		<div style="position: relative; left: 15px; bottom: 33px;">
+			<span class="badge badge-assertive counter-box" ng-model="wishList">{{latestproduct}}</span>
+		</div>
+	</div>
+
+</div>

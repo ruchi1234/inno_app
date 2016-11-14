@@ -1,0 +1,78 @@
+<ion-view view-title="Contact us" class="grey_bg">
+  	<!-- Hearder Bar Start -->
+	<div class="bar bar-header categery_header_pan">
+        <ion-nav-bar>
+  		<button style="color: #fff;z-index:1000" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+  			<ion-nav-title>
+     		Support
+     		  
+    		</ion-nav-title>
+  					
+		</ion-nav-bar>
+    </div>
+    
+	 
+	<div class="bar bar-subheader" >
+      <ion-tabs class="tabs-assertive">
+            <ion-tab title="Issue" href="#/app/contact_us"></ion-tab>
+            <ion-tab title="Issue Status" href="#/app/issue_status"></ion-tab>
+        </ion-tabs>
+
+        </div>
+	<div style="clear:both;"></div>
+	
+  	<ion-content class="has-header has-subheader" padding="10" style="margin-top: 45px;">
+      
+       
+  
+      
+      
+      
+      <div class="list">
+      	   <div>
+				<label class="item item-input item-select">
+				    <div class="input-label">
+				      Problem
+				    </div>
+				    <select ng-model="formData.issue">
+				      <option value="1">Technical Problem</option>
+				      <option value="2">Product Issue</option>
+				      <option value="3">Other Problem</option>
+				    </select>
+			    </label>
+			    <div style="color: red; padding-top: 5px; padding-bottom: 5px;">
+				<span ngshow="errproduct">{{errissue}}</span>
+			  </div>
+
+		  </div>
+      
+		  <div>      	
+			  <label class="item item-input item-floating-label">
+			    <span class="input-label">Subject</span>
+			    <input type="text" placeholder="Subject" ng-model="formData.subject">
+			  </label>
+			  <div style="color: red; padding-top: 5px; padding-bottom: 5px;">
+				<span ngshow="errproduct">{{errsubject}}</span>
+			  </div>
+		  </div>
+		  
+		  <div>
+			  <label class="item item-input item-floating-label">
+			    <span class="input-label">Message</span>
+			    <input type="text" placeholder="Message" ng-model="formData.message">
+			  </label>
+			  <div style="color: red; padding-top: 5px; padding-bottom: 5px;">
+				<span ngshow="errproduct">{{errmessage}}</span>
+			  </div>
+		  </div>
+		  
+	      <button class="button button-positive" style="width:100%;margin-top: 10px;" ng-click="contact()" ng-disabled="disable_button == 2">
+	            Submit
+	      </button>
+</div>
+ 
+        	
+      
+     
+  </ion-content>
+</ion-view>

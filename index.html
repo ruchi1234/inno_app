@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="YourApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=600 , initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://www.google.com 'unsafe-inline'; script-src 'self' https://www.google.com https://code.angularjs.org   'unsafe-inline' 'unsafe-eval'"/>
+    -->
+    <title>Innorade</title>
+    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+    <link href="minifyStyle/style.min.css" rel="stylesheet">
+    <link href="minifyStyle/custom.min.css" rel="stylesheet">
+  <!--  <link href="css/new_style.css" rel="stylesheet">-->
+    
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+	 	google.load("feeds", "1");
+	 </script> 
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+    <script src="lib/ionic/js/angular/node_modules/ngstorage/ngStorage.js"></script>
+    <script src="lib/ionic/js/angular/angular-animate.js"></script>
+    <!-- your app's js -->
+    <script src="js/common/ng-cordova.min.js"></script> 
+   <script src="cordova.js"></script>
+   <script src="js/ionic-native-transitions/dist/ionic-native-transitions.min.js"></script>
+   
+    <!-- main app js -->
+    <script src="dist/modules/angular-ios9-uiwebview.patch.js"></script>
+    <script src="lib/ionic/js/angular/angular-messages.min.js"></script>
+   
+    <script src="js/root/mainController.js"></script> 
+    <script src="js/root/data.js"></script> 
+    <script src="js/main/controllers.js"></script>
+    <script src="js/main/shopingController.js"></script>
+    <script src="js/main/basket.js"></script>       <script src="js/main/wishCtrl.js"></script>      <script src="js/main/common.js"></script>      <script src="js/main/contactCTRL.js"></script>      <script src="js/main/myOrder.js"></script>      <script src="js/main/reoder.js"></script>   
+    <!-- <script src="dist/all.min.js"></script> -->
+    
+    <!-- common js -->
+    <script src="js/services/services.js"></script>
+    <script src="js/common/push.js"></script>
+    <script src="js/common/app.js"></script>
+    <script src="js/common/router.js"></script>
+     <script src="js/common/filters.js"></script>
+    <script src="js/common/directives.js"></script>
+    <!-- your app's js -->
+  </head>
+  <body>
+    <!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

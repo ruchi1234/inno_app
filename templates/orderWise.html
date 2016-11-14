@@ -1,0 +1,97 @@
+<ion-view>
+    <!-- Hearder Bar Start -->
+    <div class="bar bar-header order_header">
+        <div class="row">
+            <div style="text-align: left;" class="col-5 category_header">
+               <!--
+                <a href="#/app/product_list"><span><i style="color: #fff;" class="ion-android-arrow-back"></i></span></a>
+                -->
+                
+                    <button style="color: #fff;" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+                
+            </div>
+            <div  class="col header_col">
+                <div>My Orders</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar bar-subheader" data-ng-init="getOrderWiseLst()">
+
+        
+        <ion-tabs class="tabs-assertive">
+            <ion-tab title="Order Wise" href="#/app/orderWise" ng-click="reload()"></ion-tab>
+             <ion-tab title="Product Wise" href="#/app/reorder"></ion-tab>
+        </ion-tabs>
+
+    </div>
+
+    <div style="clear:both;"></div>
+    <!-- Hearder Bar End -->
+    <div style="    position: absolute;  z-index: 10000; opacity: 5.5;  top: 60px;  width: 100%; height: 100%; background: rgba(0, 0, 0, 0.11);" ng-if="cover==1"  >
+	   	<div style="   position: absolute;    top: 38%;margin: 0 auto;    left: 47.89%;  "><img src="img/loading_spinner.gif" / style=" !important"></div>
+	   </div>
+
+    <ion-content class="has-header-order has-subheader" style="margin-bottom:45px;bottom:0px!important">
+        <div style="text-align: center; margin-top: 50px;" ng-if="loadingdata==1">
+            <ion-spinner icon="spiral"></ion-spinner>
+        </div>
+        <div  ng-repeat="x in orderWise_items">
+            <div class="row">
+
+                <div class="col">
+                    <div style="border-bottom: 1px solid #808080; padding: 2px;margin-top:10px">
+                       <!--
+                        <div>
+                          
+                            <span style="font-size: 18px;"></span>
+                            <div >
+                                <a style="border: 0px;" class="item item-thumbnail-left"> <img  src="{{x.image}}" /> </a>
+
+                            </div>
+                           
+                        </div>
+                         -->
+                        <div style="width:100%">
+                            <div class="product-name">
+                                <span> {{x.orderId}} </span> on <span>{{x.date}}</span>
+                            </div>
+                           
+                            <div>
+                                 <span ng-if="mrp!=0" style="color: black;" class="product-property">  MRP: </span>  <span>{{currency}}</span> <span>{{x.price}}</span>
+
+                            </div>
+                            <div>
+                                <span class="product-property"> Delivery Status : </span>  <span style="color: {{x.deliveryColor}}">{{x.deliveryStatus}}</span>
+
+                            </div>
+                            <!--
+                            <div>
+                                <span class="product-property" >Qty : <span style="margin-left: 10px;" name="quanity">{{x.sumQuantity}}</span></span>
+                            </div>
+                            -->
+                            <div class="order-bottom">
+                                <button class="button button-small button-positive" ng-click="orderReorder(x.orderId,1)" style="width:48.9%" >
+                                    View
+                                </button>
+                                <button class="button button-small button-positive" ng-click="orderReorder(x.orderId,2)" style="width:48.9%">
+                                    Reorder
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div style="text-align: center;" ng-if="!noMoreOrdersAvailable">
+            <ion-spinner icon="spiral"></ion-spinner>
+        </div>
+        <ion-infinite-scroll immediate-check="false"  icon="none" ng-if="!noMoreOrdersAvailable" on-infinite="loadMoreOrder()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+  <div class="bar bar-footer bar-balanced" ng-include src="'templates/footer.html'">
+
+	
+  </div>
+</ion-view>

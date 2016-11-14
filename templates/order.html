@@ -1,0 +1,231 @@
+<ion-view>
+
+    <!-- Hearder Bar Start -->
+    <div class="bar bar-header categery_header_pan">
+      <ion-nav-bar>
+  		<ion-nav-buttons side="left">
+      <button style="color: #fff;z-index:1000" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+  			</ion-nav-buttons>
+        <ion-nav-title>
+     		 Your Basket
+     		  
+    		</ion-nav-title>
+  					
+		</ion-nav-bar>
+    </div>
+<style>
+	.order_subheader span{
+		    opacity: 1 !important;
+	}
+</style>
+
+    <div class="bar bar-subheader order_subheader" >
+
+        <div style="clear:both;"></div>
+
+        <div class="my-select-item">
+
+        	<div class="row">
+
+        	<div style="width:60%"> 
+
+            <div style="border-bottom: #f1f1f1 solid 1px;"><span style="font-size: 15px; vertical-align: middle;color:#fff">Selected Items : </span> <span style="    float: right; vertical-align: middle;color:#fff"> {{quantity}}</span></div>
+
+            
+
+            <div><span style="font-size: 15px; vertical-align: middle;color:#fff"> Total : </span>
+
+                  <span style="    float: right;font-size: 15px; vertical-align: middle;color:#fff"> {{currencyCode}}  {{totalqauntity |setDecimal:2}} </span>
+                 
+
+             </div>
+
+        
+
+           </div> 
+
+           <div style="width:2%"></div>
+
+           <div style="width:38%"> 
+
+           	 
+
+             <div style="float: right;">
+
+                <div   ng-click="!IsClickEnable||placeOrder()">
+
+                	<img src="img/place_order_btn.png" / style="height:50px">
+
+                	</div>
+
+             </div>
+
+        
+
+           	</div>
+
+           	</div>
+
+        </div>
+
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <div style="    position: absolute;  z-index: 10000; opacity: 5.5;  top: 60px;  width: 100%; height: 100%;" ng-if="cover==1"  >
+
+	   	<div style="   position: absolute;    top: 38%;margin: 0 auto;    left: 47.89%;  "><img src="img/loadingimg.gif" / style=" !important"></div>
+
+	   </div>
+
+    <!-- Hearder Bar End -->
+
+
+
+    <ion-content class="has-header-order has-subheader" style="margin-top: 25px; bottom:10px!important" >
+
+      
+
+      <!--  Dorefresh for pullup -->
+
+      
+
+      <div class="list" ng-model="formData.category" >
+        <div ng-repeat="x in items" >
+
+    			<div style="border: 0px; display:table; width:100%;margin-top: 10px;  padding: 2px;border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(221, 221, 221);  " class="">
+
+
+
+	                 <div style=display:table-cell;width:80px; vertical-align:top;">
+
+							<a ng-href="#/app/product/{{x.prduct_id}}">
+
+                       				 <div class="cart-items">
+
+                           					 <img style="margin-top: 21px;" ng-src="{{x.image}}" />
+
+                        			</div>
+
+                           </a>
+
+	                  </div>
+
+	 
+
+
+
+					<div style="display:table-cell; vertical-align:top; padding-left:30px;">
+
+                        
+
+                       	<a  ng-href="#/app/product/{{x.prduct_id}}" >
+
+                       		<h2 class="name_font" style="margin-bottom: 5px"> {{ x.product_name}} 
+                          </h2>
+
+                            
+
+                        </a> 
+
+                        <p style="font-size: 13px; color: black;margin-bottom: 0">
+
+									<!-- <span ng-if="mrp!=0" class="list_text">MRP: </span> --> {{ currencyCode}}  {{ x.price}}   
+
+												</p>
+                        
+                        <span style="font-size:12px; color: black;" ng-if="x.pkgquantity> 1">
+                        Pcs/Box: {{ x.pkgquantity}} pcs
+                      </span>
+                        <div style="clear: both;"></div>
+                        <div style="/* float: left; */" ng-repeat="sub in x.color" > 
+
+                            <div ng-if="$first && sub.color" class="list_text_name"  >
+                              Color: 
+                            </div>
+                            <div ng-if="sub.color" class="colorIcon" style="background: {{::sub.color}};border: 1px solid black;"> 
+                            </div>
+
+                        </div>
+                        <div style="clear: both;"></div>
+
+                        <div style="  margin-top: 2px;" ng-repeat="sub in x.color"> 
+
+                          <div ng-if="$first && sub.size" class=" list_text_name"  >
+                            Size: 
+                           </div>
+
+                              <div ng-if="sub.size" class="sizeIcon" style="border: 1px solid black; border-radius: 4px;" > 
+                                  <div style="text-align: center;color:#000;margin-right: 2px;margin-left: 1px;"> {{::sub.size}} 
+                                  </div>
+                              </div>                                               
+
+                        </div>
+                         
+                        <div style="clear: both;"></div>
+                        <div style="padding-top: 5px;padding-bottom: 5px;font-size: 13px;">
+
+                            <span ng-if="x.pkgquantity > 1">Order(Boxes): </span>
+                            <span ng-if="x.pkgquantity == 1">Order(Boxes): </span>
+                            <select ng-model="itemQuantity[x.prduct_id]" ng-options="value as value  for value in counters track by value" ng-change="updateQuantity($index,x.prduct_id);" class="select_box ">
+
+                                    <option>--</option>
+
+                            </select>
+
+                        </div> 
+                        <div>
+                        	<span  style="font-size: 12px; color:black;">Total quantity (in pcs):  {{x.pkgquantity * itemQuantity[x.prduct_id]}}
+													     </span>
+                        	
+                        </div>
+                     
+                        <div>
+                        	<span  style="font-size: 12px; color:black;">Total Price: {{currencyCode}} {{(x.price * x.pkgquantity *itemQuantity[x.prduct_id])| setDecimal:2}} 
+													     </span>   
+                        	
+                        </div>
+                     
+
+					</div>
+
+					<div style="display:table-cell; vertical-align:top; padding-right:10px;float: right" ng-click="removeItem($index)">
+
+							 <i style="font-size: 35px;color: orange;z-index:1000" class="icon ion-ios-trash-outline" ></i>
+
+					</div>
+
+
+
+				</div>
+
+
+
+
+
+        </div>
+        </div>
+        <!-- ---- If no item -->
+        <div ng-if="noData">
+        <div class="row" >
+
+                      <div class="col" style="text-align:center;margin-bottom: 20px; margin-top: 20px; text-align: center"  > Shopping Cart is empty!</div>
+
+        </div>
+        <div class="row" style="display: inherit !important;">
+        <div class="col">
+        <a ng-href="#/app/category">
+            <div style="text-align: center;width:150px;margin:0 auto" class="select_store_btn">
+              Continue Shopping
+            </div>
+        </a>
+        </div>
+      </div>
+  </div>
+
+       <div style='height: 5px'></div> 
+
+    </ion-content>
+
+ </ion-view>
+

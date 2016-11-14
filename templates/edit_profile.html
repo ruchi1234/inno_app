@@ -1,0 +1,93 @@
+<style>
+	 
+</style>
+<ion-view>
+	<!-- Hearder Bar Start -->
+	<div class="bar bar-header edit_address_header">
+		
+		<div class="row">
+            
+            <div class="col-25 category_header">
+				<button style="color: #fff;margin-top: 6px;" class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openLeftMenu()"></button>
+			</div>
+            <div class="col" style="margin-top: 10px;    overflow: hidden;">
+                <span  >Change my information</span>
+            </div>
+        </div>
+		 
+	</div>
+	<div style="clear:both;"></div>
+	<!-- Hearder Bar End -->
+
+	<ion-content class="has-header has-subheader-login">
+		<div style="text-align: center;margin-top: 50px;" ng-if="loadingdata==1">
+	 	   	<img ng-src="img/loading_spinner.gif" />
+	 	</div>
+		<form name="myForm">
+			<div style="margin-top: 25px;" class="row">
+				<div class=""></div>
+				<div class="col">
+					<div class="list" style="width:100%">
+		<label class="item  item-input item-floating-label" ng-style="banmeerr">
+          <span class="input-label">Business Name</span>
+         <input type="text"  ng-model="myData.businessName" placeholder="Business Name" name="businessName" required pattern=".{2,}" >
+        </label>
+        <label class="item  item-input item-floating-label" ng-style="personerr">
+          <span class="input-label">Name</span>
+             <input type="text"  ng-model="myData.name" placeholder="Contact Person Name" name="name" required pattern=".{2,}"  >
+        </label>
+        <label class="item  item-input item-floating-label" ng-style="texterr">
+          <span class="input-label">Address </span>
+          <input type="text"  ng-model="myData.address" placeholder="Address" name="name" required    >
+          <!-- <textarea rows="3" name="address" placeholder="Address" ng-model="myData.address" required ></textarea> -->
+          </label>
+          
+          <label class="item  item-input item-floating-label" ng-style="emailerr">
+          <span class="input-label"> Email</span>
+           <input type="email" name="email" placeholder="Email" ng-model="myData.email" required>
+          </label>
+          
+          <label class="item  item-input item-floating-label" ng-style="pnumbererr">
+          <span class="input-label">Phone Number </span>
+           <input type="text" name="phone" placeholder="Phone Number" ng-model="myData.phone" ng-required="true" minlength="10" ng-autocomplete="false">
+          </label>
+          
+          
+          
+          <label class="item  item-input item-floating-label" ng-style="storeerr">
+          <span class="input-label"> Pincode Code </span>
+             <input style="width: 100%" type="text" placeholder="Pincode Code" ng-model="myData.pincode"  />
+          </label>
+         
+         <label class="item  item-input item-floating-label" ng-style="paneerr">
+          <span class="input-label"> Pan Card </span>
+             <input style="width: 100%" type="text" placeholder="Pan Card" ng-model="myData.panard"  />
+          </label>
+          
+          <label class="item  item-input item-floating-label" ng-style="tineerr">
+          <span class="input-label"> Tin </span>
+             <input style="width: 100%" type="text" placeholder="Tin" ng-model="myData.tin"  />
+          </label>
+        </div>
+					 	
+					<div ng-if="errormail"><span style="color:red;margin-bottom: 10px;" ng-show="errormail">{{errormail}}</span> <br /></div>
+					 
+					<div class="row">
+						<div class=" "></div>
+						<div class="col">
+							<div class="mybtn">
+								<button class="button button-block button-assertive mybutton" value="submit" ng-click="editProfile();">
+									Submit
+								</button>
+							</div>
+						</div>
+						<div class=""></div>
+					</div>
+				</div>
+				<div class=""></div>
+			</div>
+		</form>
+	</ion-content>
+ 
+
+</ion-view>

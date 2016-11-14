@@ -1,0 +1,120 @@
+<ion-view ng-init="getProductDetail();">
+    <!-- Hearder Bar Start -->
+    <div class="bar bar-header subcategery_header_pan">
+        <ion-nav-bar>
+  			<ion-nav-back-button class="button-clear" ng-click="setpreURL()">
+    			<i class="ion-arrow-left-c"></i> Back </ion-nav-back-button>
+  				<ion-nav-title>
+     		 	{{shopName}}
+    			</ion-nav-title>
+  					
+		</ion-nav-bar>
+
+    </div>
+    <div style="clear:both;"></div>
+    <!-- Hearder Bar End -->
+
+    <ion-content class="has-header-product has-subheader">
+         
+        
+        <div style="margin-bottom: 50px;">
+            <div class="col" style="text-align:center">
+               <h2 class="pro_name">{{::name}}</h2>
+
+            </div>
+
+            <div  class="col product_img product_bigImg">
+                
+                <slider images="images" />
+            </div>
+            
+            <div style="text-align:center;z-index:1000" ng-if="!name">
+                <ion-spinner icon="spiral"></ion-spinner>
+            </div>
+            <div class="customTable"> 
+            	  <div class="customtd"> </div>
+            	   
+            	    <div class="customMidTD">
+            	    	<!-- span class="add-cart custom_cart"  > -->
+                        <div ng-if="ordering == 1" class="add-cart" style="float: none;width: 85px;" ng-click="addcustomcart(images,colordata)"   >Add to cart</div>
+                   <!-- </span> --> </div>
+            	    <div class="customtd">
+            	    	<a ng-click="addTofavourite(status,currentProductId)" title="Like"><i style="color: orange;margin-right: 15px;font-size: 25px;" class="{{classname}}"></i></a>
+            	    	</div>
+            	
+            </div>
+            
+              
+
+           
+ 			
+ 			<div class="customizeAlign">	
+			<div class="row product_detail" style="padding: 2px;font-weight: bold">
+				<div ng-if="showcolor==1" style="width: {{divSize}}%; text-align: center;">Color</div>
+				<div ng-if="showsize==1" style="width:{{divSize}}%; text-align: center; ">Size</div>
+				<div style="width: {{divSize}}% ; text-align: center;">Price</div>
+				<div style="width:{{divSize }}%; text-align: center;">Quantity</div>
+				 
+			</div>
+			</div>
+			<div style="clear:both;"></div>
+			<div ng-repeat="x in colordata"> 
+			<div class="customizeAlign">
+			<div class="row product_detail" style="padding: 2px;">
+				<div ng-if="showcolor==1" style="width:{{divSize}}% ;text-align: center;" >
+    					<div class="customColor1" style="background:{{::x.color}};"> </div>
+     			</div>
+				<div ng-if="showsize==1" style="width: {{divSize}}% ;text-align: center;" class="customQuantity1">
+					<div   style="margin: 0 auto;" > {{::x.size}}</div>
+					
+					</div>
+				<div style="width:{{divSize}}% ;text-align: center;" class="customQuantity1">
+					 <span ng-if="x.discount" style="color:red; margin-left: 1px; font-size: 10px;"> <span ng-if="mrp!=0" style="color: black;">  MRP: </span> <strike>{{currencyCode}} {{x.selling_price}}</strike>
+					 	<span style="color: green; margin-left: 1px;" class="ng-binding">{{::x.discount}}% off</span>
+					 </span>
+					 <div class="list_text">
+					 <span ng-if="mrp!=0 && x.discount=='' " >
+					    MRP: 
+					 </span>
+					 {{::currencyCode}}{{::x.discount_price}}</div>
+					</div>
+				<div style="width: {{divSize}}%;text-align: center;" class="customQuantity1">
+  					 
+                     <select  name="{{item.id}}" ng-if="x.current_quantity > 0" style="border-radius: 5px;   width: 52px;" ng-model="formData.myProductCounter[x.id]" required="required" ng-init="formData.myProductCounter[x.id]= 0"  ng-options="option as option for option in zerocounters track by option">
+
+					 </select>
+					 <div class="add-cart notifycss" style="    text-align: center;" ng-click="notify1(x.id)" ng-if="x.current_quantity <= 0">
+                        Notify Me
+                    </div>
+
+                     
+  				</div>
+  				<!-- <div style="width: {{divSize}}% ;text-align: center;">
+  					 
+                    <div class="add-cart" style="float:left!important;padding: 3px" ng-click="addcart(x.id,x.discount_price,images[0]['image'])">
+                        Add to Cart
+                    </div>
+  				</div> -->
+				
+			</div>
+			</div>
+			<div style="clear:both;"></div>
+			</div>
+			
+			
+             
+            <div style= "" class="row ">
+                <div class="col">
+                    <div style="padding-left: 15px;color: #B6B6B4">
+                        {{::description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+     <div class="bar bar-footer bar-balanced" ng-include src="'templates/footer.html'">
+	
+	</div>
+
+</ion-view>

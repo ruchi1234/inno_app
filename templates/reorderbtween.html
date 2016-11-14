@@ -1,0 +1,195 @@
+<ion-view ng-init="getProductDetail();">
+    <!-- Hearder Bar Start -->
+    <div class="bar bar-header subcategery_header_pan">
+        <div class="row header_row1">
+             
+             <div class="col-5">
+                <div style=" text-align: left;">
+                    <a href="#/app/reorder" >
+                        <div class="back-arrow">
+                        <i style="font-size: 20px;color: #fff;" class="ion-android-arrow-back"></i>
+                        </div>
+                        </a>
+                </div>
+            </div> 
+            <div style="text-align: center" class="col-90">
+				<span class="shopsize" >{{shopName}} </span> 
+			</div>
+            <div style="text-align: right;" class="col">
+                <a href="#/app/order"> <span><i style="font-size: 25px; margin-right: 12px; color: #fff;" class="ion-ios-cart" ></i></span>
+                <div style="margin-right: -8px; margin-top: -34px;" ng-click="showConfirm()">
+                    <span class="badge badge-assertive counter-box" ng-model="itemInCart">{{itemInCart}}</span>
+                </div> </a>
+            </div>
+
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <!-- Hearder Bar End -->
+
+    <ion-content class="has-header-product has-subheader">
+        <!--
+        <div style="text-align: center;" ng-if="loadingdata==1">
+        <img ng-src="img/loading_spinner.gif" / style="width:100px !important">
+        </div>
+        -->
+        <div style="margin-bottom: 100px;">
+            <div class="col" style="text-align:center">
+                <h2 class="pro_name">{{name}}</h2>
+
+            </div>
+
+            <div  class="col product_img product_bigImg">
+                <!--<img style="height: 100% !important" ng-src="{{productImaage[0]['image']}}" />-->
+                <slider images="images" />
+            </div>
+              <div class="row" style="margin-bottom: 5px;" >
+                <div style="width: 50%;text-align: right;  margin-right: 5px;">
+                    <select name "{{item.id}}" ng-model="formData.myProductCounter" style="border-radius: 5px;   width: 52px;"  >
+                        <option ng-repeat="sub in counter" value="{{sub.id}}"  ng-selected="{{sub.id == 1 }}">{{ sub.id }} </option>
+                    </select>
+                </div>
+                <div style="width: 50%">
+                    <div class="add-cart" style="float:left!important;padding: 3px;padding-left: 5px;padding-right: 5px;height:24px!important;padding-left: 5px;padding-right: 5px;"
+                     ng-click="reorder(index,id,'3',name,price,image)">
+                       Reorder  
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                 
+
+            </div>
+
+            <div class="row" ng-if="price">
+
+                <div class="col product_detail" >
+                    <span class="left_containt font_color">Price</span><span class="right_containt" style=" font-weight: 600;" > {{currencyCode}}  {{price}}</span>
+                    <span style="#000; margin-left: 10px;" ng-if="percentage_discount"><strike style="float: right; margin-right: 10px;">{{currencyCode}} {{price}}</strike></span>
+                </div>
+                
+
+            </div>
+            <div class="row" ng-if="sunqunatity">
+
+                <div class="col product_detail" >
+                    <span class="left_containt font_color">Order Qunatity</span><span class="right_containt" style=" font-weight: 600;" >    {{sunqunatity}}</span>
+                    <span style="#000; margin-left: 10px;" ng-if="percentage_discount"><strike style="float: right; margin-right: 10px;">{{currencyCode}} {{price}}</strike></span>
+                </div>
+                
+
+            </div>
+
+            <div style="text-align: center;" class="row" ng-if="percentage_discount">
+                <div class="col product_detail">
+
+                    <span class="left_containt font_color">Discount </span><span class="right_containt">{{percentage_discount}}  % Off</span>
+
+                </div>
+            </div>
+
+            <div class="row " ng-if="colorname">
+                <div class="col product_detail">
+
+                    <span class="left_containt font_color" style="float: left;"> Color </span>
+                    <div style="float:right;display: -webkit-inline-box;">
+                        <!--
+                        <select ng-model="formData.colordata" ng-change="changeProduct();" ng-if="pck_quantity==1 && color_variation==1">
+                            <option ng-repeat="x in colordata" value="{{x.color}}" ng-selected="{{x.color == currentProductId }}">{{x.colorname}} </option>
+                        </select>
+                        -->
+                        <div class="divpad"    > <!--ng-if="color_variation==2" -->
+                            <div  class="procolorIcon" style="background: {{colorname}};"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style=" " class="row " ng-if="size">
+                <div class="col product_detail">
+                    <span class="left_containt font_color"> Size </span>
+                    <div style="float:right;display: -webkit-inline-box;">
+                       <!--
+                        <select ng-model="formData.colordata" style="border: 0px;" ng-change="changeProduct();" ng-if="pck_quantity==1 && color_variation==1">
+                            <option ng-repeat="x in colordata" value="{{x.color}}" ng-selected="{{x.color == currentProductId }}">{{x.size}} </option>
+                        </select>
+                       -->
+                        <div   >
+
+                            <div   class="sizeIcon" >
+                                <div style="text-align: center;color:#000">
+                                    {{size}}
+                                </div>
+                            </div>
+
+                        </div> </div>
+                </div>
+            </div>
+            <div style="text-align: center;" class="row" ng-if="brandname" >
+                <div class="col product_detail">
+
+                    <span class="left_containt font_color">Brand </span><span class="right_containt">{{brandname}}</span>
+
+                </div>
+            </div>
+            <div style="text-align: center;" class="row" ng-if="productSKU">
+                <div class="col product_detail">
+
+                    <span class="left_containt font_color">Sku </span><span class="right_containt">{{productSKU}}</span>
+
+                </div>
+            </div>
+            <div  class="row" ng-if="pkg_quantity">
+                <div class="col product_detail">
+                    <div style="<!-- border-top: 1px solid #ccc; --> color: #444; box-shadow: none;" class="list font_color">
+                        <span ng-if="pkg_quantity==1"> Single Piece </span>
+                        <span ng-if="pkg_quantity > 1"> Box of {{pkg_quantity}}. </span>
+
+                    </div>
+                </div>
+            </div>
+            <div style= "" class="row ">
+                <div class="col" style="color:#B6B6B4;margin-left:10px;margin-right: 10px">
+                        {{description}}
+                    
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+ 
+    <div class="bar bar-footer bar-balanced">
+		<div style="text-align: center; padding-top: 10px;" class="row">
+			<div class="col">
+				<a href="#/app/category"> <i style="color: #fff !important;" class="my-icon ion-ios-list-outline"></i> </a>
+			</div>
+			<div class="col">
+				<a href="#/app/order"> <i style="color: #fff !important;" class="my-icon ion-ios-cart"></i>   <!-- ng-click="orderRedirection();" -->
+				<div style="position: relative; left: 15px; bottom: 33px;">
+					<span class="badge badge-assertive counter-box" ng-model="itemInCart">{{itemInCart}}</span>
+				</div>
+				</a>
+			</div>
+			<div class="col">
+				<a href="#/app/orderWise"> <i style="color: #fff !important;" class="my-icon ion-ios-plus-outline"></i> </a>
+			</div>
+			<div class="col">
+				<a href="#/app/my_address"> <i style="color: #fff !important;" class="my-icon ion-ios-compose-outline"></i> </a>
+			</div>
+			<div class="col">
+				<!--ng-click="wishDirection();"  --> 
+				<a href="#/app/wish_list" ><i style="font-size: 20px; color: #fff !important;" class="ion-android-favorite-outline"></i> 
+				<div style="position: relative; left: 15px; bottom: 33px;">
+					<span class="badge badge-assertive counter-box" ng-model="wishList">{{wishList}}</span>
+				</div>
+				</a>
+			</div>
+			<div class="col">
+				<a href="#/app/my_address"> <i style="color: #fff !important;" class="my-icon ion-person"></i> </a>
+			</div>
+		</div>
+	</div>
+
+</ion-view>
